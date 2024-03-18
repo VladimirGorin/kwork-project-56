@@ -1,0 +1,2 @@
+telethon==1.33.1
+clear-screen==0.1.14
