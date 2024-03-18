@@ -2,7 +2,7 @@ import install
 
 from utils.send import Send
 
-import logging, sys
+import logging, sys, os
 
 
 class Main():
@@ -18,11 +18,21 @@ class Main():
 
             text = self.read_file("./assets/data/text.txt")
 
+            images_path = "./assets/data/images/"
+            images = os.listdir(images_path)
+
+            if len(images) > 1:
+                self.error_log("Ошибка! В папке больше одного файла")
+
+            image_path = f"{images_path}{images[0]}"
+
             send = Send(self.logger)
-            send.send_groups(groups, text)
+            send.auth()
+            send.send_groups(groups, text, image_path)
 
         except Exception as e:
             self.error_log(f"Ошибка!: {e}")
+
 
     def error_log(self, message):
         print(message)
