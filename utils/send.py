@@ -1,4 +1,4 @@
-from telethon.sync import TelegramClient, errors, functions
+from telethon.sync import TelegramClient, functions
 
 from configparser import ConfigParser
 
@@ -46,10 +46,10 @@ class Send:
         except Exception as e:
             self.error_log(f"Ошибка!: {e}")
 
-    def flood_wait(self, error):
-        seconds = error.seconds
-        self.info_log(f"Попали в лимит спим {seconds} секунд : {error}")
-        time.sleep(seconds)
+    # def flood_wait(self, error):
+    #     seconds = error.seconds
+    #     self.info_log(f"Попали в лимит спим {seconds} секунд : {error}")
+    #     time.sleep(seconds)
 
     def send_groups(self, groups, text, image_path):
         try:
@@ -59,18 +59,15 @@ class Send:
                     self.client(functions.channels.JoinChannelRequest(group))
                     self.info_log(f"Вступили в группу: {group}")
                     time.sleep(2)
-                    self.client.send_message(group, text)
                     self.client.send_file(group, image_path, caption=text)
-                    self.stats = self.stats["groups_sended_count"] + 1
+                    self.stats["groups_sended_count"] += 1
                     time.sleep(2)
-
-                except (errors.FloodError) as e:
-                    self.flood_wait(e)
-                    continue
 
                 except Exception as e:
                     self.error_log(
                         f"[{group}] Ошибка при работе с группой, продолжаем: {e}")
+
+                    continue
 
             self.info_log(f"Рассылка завершена\nВсего отправлено сообщений: {self.stats['groups_sended_count']}")
             self.client.disconnect()
