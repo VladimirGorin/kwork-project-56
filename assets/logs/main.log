@@ -30,3 +30,13 @@
 2024-03-18 22:30:01,866 - INFO - Попали в лимит спим 770 секунд : A wait of 770 seconds is required before sending another message in this chat (caused by SendMessageRequest)
 2024-03-18 22:37:22,351 - ERROR - Ошибка! В папке больше одного файла
 2024-03-18 22:38:10,355 - INFO - Вы успешно авторизовались под своим аккаунтом
+2024-03-19 23:10:53,518 - ERROR - Ошибка!: invalid literal for int() with base 10: 'ваш апи айди'
+2024-03-19 23:10:53,518 - ERROR - [@LV_TOP] Ошибка при работе с группой, продолжаем: 'Send' object has no attribute 'client'
+2024-03-19 23:10:53,518 - INFO - Рассылка завершена
+Всего отправлено сообщений: 0
+2024-03-19 23:10:53,518 - ERROR - Ошибка!: 'Send' object has no attribute 'client'
+2024-03-19 23:11:14,122 - ERROR - Ошибка!: invalid literal for int() with base 10: 'ваш апи айди'
+2024-03-19 23:11:14,123 - ERROR - [@LV_TOP] Ошибка при работе с группой, продолжаем: 'Send' object has no attribute 'client'
+2024-03-19 23:11:14,123 - INFO - Рассылка завершена
+Всего отправлено сообщений: 0
+2024-03-19 23:11:14,123 - ERROR - Ошибка!: 'Send' object has no attribute 'client'

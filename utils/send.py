@@ -1,8 +1,11 @@
 from telethon.sync import TelegramClient, errors, functions
 
+from configparser import ConfigParser
 
-import time, os
+import time
 
+config = ConfigParser()
+config.read("./assets/data/config.ini")
 
 class Send:
     def __init__(self, logger) -> None:
@@ -24,9 +27,10 @@ class Send:
     def auth(self):
         try:
 
-            phone_number = input("Введите номер телефона: ")
-            api_id = input("Введите api_id: ")
-            api_hash = input("Введите api_hash: ")
+            phone_number = config.get("SETTINGS", "PHONE")
+            api_id = int(config.get("SETTINGS", "API_ID"))
+            api_hash = config.get("SETTINGS", "API_HASH")
+
 
             session_path = f"./assets/sessions/{phone_number}.session"
             success_message = "Вы успешно авторизовались под своим аккаунтом"
@@ -60,7 +64,7 @@ class Send:
                     self.stats = self.stats["groups_sended_count"] + 1
                     time.sleep(2)
 
-                except (errors.FloodWaitError, errors.FloodError) as e:
+                except (errors.FloodError) as e:
                     self.flood_wait(e)
                     continue
 
